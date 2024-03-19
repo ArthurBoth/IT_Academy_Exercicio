@@ -1,10 +1,9 @@
 package system;
 
 // Java library imports
+import java.util.Arrays;
 import java.util.Set;
 import java.util.HashSet;
-import java.util.Arrays;
-import java.util.HashMap;
 
 // File imports
 import static complementaries.Constants.Variables.*;
@@ -207,9 +206,9 @@ public class AppSystem {
         currentWinners = currentRaffle.drawWinners();
         winnerBets.addAll(currentWinners);
         winnerNumbers = currentRaffle.getWinnerNumbers();
-        everyBetNumber = sortByFrequency(currentRaffle.getAllBetNumbers());
+        
         Arrays.sort(winnerNumbers);  // sorts in  ascending order
-        Arrays.sort(everyBetNumber); // sorts in descending order
+        everyBetNumber = sortByFrequency(currentRaffle.getAllBetNumbers());
         currentRaffle = null;
 
         UI.printDrawingNumbersAnnouncementMessage(winnerNumbers);
@@ -223,21 +222,19 @@ public class AppSystem {
     }
 
     /**
-     * Uses {@code PairedInt} to match the {@code keys} and {@code values} 
-     * of a map and stores those in an array ordered by the values in 
+     * Uses {@code PairedInt} to match the positions and frequencies 
+     * of an array and orders them by their frequencies in 
      * descending order.
-     * @param everyBetNumber is the {@code HashMap} with the keys and values
+     * @param frequency is the {@code int[]} with the frequencies
      * @return An array storing the paired values.
      */
-    private PairedInt[] sortByFrequency(HashMap<Integer, Integer> everyBetNumber) {
-        int[] betNumbers = everyBetNumber.keySet().stream().mapToInt(Integer::intValue).toArray();
-        int[] frequency = everyBetNumber.values().stream().mapToInt(Integer::intValue).toArray();
-        
-        PairedInt[] returnValue = new PairedInt[betNumbers.length];
+    private PairedInt[] sortByFrequency(int[] frequency) {        
+        PairedInt[] returnValue = new PairedInt[frequency.length];
 
-        for (int i = 0; i < betNumbers.length; i++) {
-            returnValue[i] = new PairedInt(betNumbers[i], frequency[i]);
+        for (int i = 0; i < frequency.length; i++) {
+            returnValue[i] = new PairedInt(i+1, frequency[i]);
         }
+
         Arrays.sort(returnValue);
         return returnValue;
     }

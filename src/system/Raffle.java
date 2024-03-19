@@ -3,8 +3,6 @@ package system;
 // Java library imports
 import java.util.Set;
 import java.util.HashSet;
-import java.util.Map;
-import java.util.HashMap;
 
 // File imports
 import static complementaries.Constants.Variables.*;
@@ -16,13 +14,13 @@ public class Raffle {
     private final Set<Bet> BETS;
     private final Set<Bet> WINNER_BETS;
     private final Set<Integer> DRAWN_NUMBERS;
-    private final Map<Integer, Integer> BET_NUMBERS;
+    private final int[] BET_NUMBERS;
 
     public Raffle() {
         BETS = new HashSet<>();
         DRAWN_NUMBERS = new HashSet<>();
         WINNER_BETS = new HashSet<>();
-        BET_NUMBERS = new HashMap<>();
+        BET_NUMBERS = new int[UPPER_BOUND_OF_VALID_NUMBERS];
 
         POSSIBLE_NUMBERS = Constants.ValidNumbers();
     }
@@ -33,7 +31,7 @@ public class Raffle {
      */
     public void addBet(Bet bet) {
         for (int i : bet.getNumbers()) {
-            BET_NUMBERS.merge(i, 1, Integer::sum);
+            BET_NUMBERS[i-1]++;
         }
         BETS.add(bet);
     }
@@ -136,10 +134,10 @@ public class Raffle {
     
     /**
      * 
-     * @return {@code HashMap} storing every bet number (as key) 
-     *              and its respective frequency (as value)
+     * @return {@code int[]} storing the amount of times every number was bet.
+     *             <p>eg: {@code [10]} stores the amount of times {@code 10} was bet
      */
-    public HashMap<Integer, Integer> getAllBetNumbers() {
-        return new HashMap<>(BET_NUMBERS);
+    public int[] getAllBetNumbers() {
+        return BET_NUMBERS.clone();
     }
 }

@@ -454,6 +454,9 @@ public interface UI {
         System.out.print("Número apostado\t|Quantidade de apostas");
 
         for (PairedInt p : everyBetNumber){
+            if (p.frequency == 0) {
+                continue;
+            }
             System.out.printf("%n%s%d%s\t\t|%s%d%s",
                                     COLOUR_BLUE, p.number, COLOUR_RESET,
                                     COLOUR_BLUE, p.frequency, COLOUR_RESET);
