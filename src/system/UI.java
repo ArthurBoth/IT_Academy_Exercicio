@@ -207,6 +207,8 @@ public interface UI {
         System.out.printf("%sNenhum%s número foi sorteado e %snenhum%s ganhador foi estabelecido%n",
                                 COLOUR_PURPLE, COLOUR_RESET,
                                 COLOUR_PURPLE, COLOUR_RESET);
+        System.out.printf("%sPontos desta rodada serão transferidos para a próxima%s%n",
+                                COLOUR_YELLOW, COLOUR_RESET);
     }
 
     /**
@@ -380,7 +382,8 @@ public interface UI {
      * Prints a message stating that one or more people have winner bets in Brazilian Portuguese.
      * @param winners stores every winning bet
      */
-    public static void printSomeoneWonMessage(Set<Bet> winners) {
+    public static void printSomeoneWonMessage(Set<Bet> winners, int points) {
+        int numberOfRewards = (points / REWARD_POINT_PRIZE);
         // to retrieve elements from the set
         Bet[] winnersArray = new Bet[winners.size()];
         int aux = 0;
@@ -400,6 +403,14 @@ public interface UI {
                                     COLOUR_YELLOW, COLOUR_CYAN, winnersArray[0].getBetterName(),
                                     COLOUR_YELLOW, COLOUR_BLUE, COLOUR_RESET);
             printWinnerBets(winnersArray);
+            System.out.printf("Sua aposta agora possui %s%d%s pontos para serem resgatados.%n",
+                                    COLOUR_BLUE, points, COLOUR_RESET);
+            System.out.printf("Isso equivale a %s%d%s recompensa",
+                                    COLOUR_BLUE, numberOfRewards, COLOUR_RESET);
+            if (numberOfRewards != 1) {
+                System.out.print("s");
+            }
+            System.out.println(".\n");
             return;
         }
         
@@ -426,6 +437,14 @@ public interface UI {
         System.out.printf(" %s%sresgatem seus prêmios através dos %sIDs%s das suas apostas%s%n",
                                 names.toString(),COLOUR_YELLOW, COLOUR_BLUE, COLOUR_YELLOW, COLOUR_RESET);
         printWinnerBets(winnersArray);
+        System.out.printf("Suas apostas agora possuem %s%d%s pontos para serem resgatados.%n",
+                                COLOUR_BLUE, points, COLOUR_RESET);
+        System.out.printf("Isso equivale a %s%d%s recompensa",
+                                COLOUR_BLUE, numberOfRewards, COLOUR_RESET);
+        if (numberOfRewards != 1) {
+            System.out.print("s");
+        }
+        System.out.println(".\n");
     }
 
     /**
@@ -441,9 +460,10 @@ public interface UI {
     /**
      * Prints a message stating that nobody has a winning bet for this edition in Brazilian Portuguese.
      */
-    public static void printNobodyWonMessage() {
+    public static void printNobodyWonMessage(int points) {
         System.out.printf("%nParece que %sninguém venceu%s esta edição, que pena!%n",
                                 COLOUR_PURPLE, COLOUR_RESET);
+        System.out.printf("%sA próxima edição valerá mais pontos%s!%n", COLOUR_YELLOW, COLOUR_RESET);
     }
 
     /**
@@ -492,8 +512,17 @@ public interface UI {
      * because they have already received their prize in Brazilian Portuguese.
      */
     public static void printRemovedFromRewardsSet() {
-        System.out.printf("Sua recompensa foi regatada, %ssua aposta foi retirada da lista%s%n",
+        System.out.printf("Sua recompensa foi resgatada, %ssua aposta foi retirada da lista%s%n",
                                 COLOUR_YELLOW, COLOUR_RESET);
+    }
+
+    /**
+     * Prints a message stating that the user's bet has so many points, it can retrieve 
+     * another reward in Brazilian Portuguese.
+     */
+    public static void printStillHasAPrize() {
+        System.out.printf("Sua aposta possui muitos pontos e, por isso, você pode %sresgatar outra " +
+                                "recompensa%s%n", COLOUR_YELLOW, COLOUR_RESET);
     }
 
     /**
@@ -502,5 +531,6 @@ public interface UI {
     public static void printWrongBetIdOrCpfMessage() {
         System.out.printf("Uma ou mais das informações %snão confere%s com os vencedores, retornando ao menu...",
                                 COLOUR_RED, COLOUR_RESET);
+        System.out.printf("Ou a sua aposta não tem pontos o suficiente para resgatar uma recompensa");
     }
 }

@@ -34,6 +34,7 @@ public class Raffle {
             BET_NUMBERS[i-1]++;
         }
         BETS.add(bet);
+        PrizePool.addToThePot(POINTS_PER_NEW_BET);
     }
 
     /**
@@ -44,11 +45,11 @@ public class Raffle {
      * @return {@code HashSet} storing the winners. It may be empty
      */
     public Set<Bet> drawWinners() {
-        for (int i = 0; i < (AMOUNT_OF_EXTRA_DRAWING_ROUNDS + 1); i++) {
-            // '+ 1' so it does the regular round as well
+        for (int i = 0; i < NUMBER_OF_MAXIMUM_ROUNDS; i++) {
             drawWinnerNumbers();
             checkForWinners();
             if (!WINNER_BETS.isEmpty()) {
+                PrizePool.distributePoints(WINNER_BETS);
                 break;
             }
         }

@@ -18,12 +18,15 @@ public class Bet {
     private final HashSet<Integer> BET_NUMBERS;
     private final HashSet<Integer> POSSIBLE_NUMBERS;
 
+    private int points;
+
     public Bet (int RAFFLE_ID, int ID, String BETTER_NAME, String BETTER_CPF) {
         this.RAFFLE_ID = RAFFLE_ID;
         this.ID = ID;
         this.BETTER_NAME = new AlphabeticString(BETTER_NAME);
         this.BETTER_CPF = formatCpf(BETTER_CPF);
         BET_NUMBERS = new HashSet<>();
+        points = 0;
         
         POSSIBLE_NUMBERS = Constants.ValidNumbers();
     }
@@ -115,6 +118,30 @@ public class Bet {
      */
     public String getBetterCpf() {
         return this.BETTER_CPF;
+    }
+
+    /**
+     * 
+     * @param points is added to the amount of {@code betPoints} this bet has
+     */
+    public void addPoints(int points) {
+        this.points += points;
+    }
+
+    /**
+     * 
+     * @param points is subtracted from the amount of {@code betPoints} this bet has
+     */
+    public void removePoints(int points) {
+        this.points -= points;
+    }
+
+    /**
+     * 
+     * @return the amount of {@code betPoints} this bet has
+     */
+    public int getPoints() {
+        return points;
     }
 
     /**
