@@ -1,8 +1,10 @@
 package system;
 
-import static complementaries.Constants.Variables.POINTS_FOR_WINNER_BETS;
-
+// Java library imports
 import java.util.Set;
+
+// File imports
+import static complementaries.Constants.Variables.POINTS_FOR_WINNER_BETS;
 
 public class PrizePool {
     
@@ -42,6 +44,10 @@ public class PrizePool {
         return pot;
     }
 
+    /**
+     * 
+     * @return the amount of points distributed last time
+     */
     public static int getLastDistributedPoints() {
         return lastDistributedPoints;
     }

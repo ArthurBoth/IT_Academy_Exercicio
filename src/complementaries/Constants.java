@@ -13,7 +13,7 @@ public interface Constants {
 
         public static final int LOWER_BOUND_OF_VALID_NUMBERS = 1;
         public static final int UPPER_BOUND_OF_VALID_NUMBERS = 50;
-        public static final int NUMBERS_PER_BET = 3;
+        public static final int NUMBERS_PER_BET = 5;
         public static final int AMOUNT_OF_INITIAL_DRAW_NUMBERS = 5;
         public static final int NUMBER_OF_MAXIMUM_ROUNDS = 25;
         public static final int START_OF_OPTIONS_IN_MENU = 1;

@@ -207,8 +207,6 @@ public class AppSystem {
         currentWinners = currentRaffle.drawWinners();
         winnerBets.addAll(currentWinners);
         winnerNumbers = currentRaffle.getWinnerNumbers();
-        
-        Arrays.sort(winnerNumbers);  // sorts in  ascending order
         everyBetNumber = sortByFrequency(currentRaffle.getAllBetNumbers());
         Arrays.sort(winnerNumbers);  // sorts in  ascending order
         pointsAWinnerHas = (POINTS_FOR_WINNER_BETS + PrizePool.getLastDistributedPoints());
