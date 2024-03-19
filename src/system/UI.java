@@ -121,7 +121,8 @@ public interface UI {
                 System.out.print("Você não escreveu um número, por favor tente novamente: ");
                 flagInvalidInput = true;
             } catch (IllegalArgumentException e) {
-                System.out.printf("Você deve escolher um número maior que %s%d%s, por favor tente novamente: ",
+                System.out.printf("Você deve escolher um número maior ou igual a %s%d%s," + 
+                                        " por favor tente novamente: ",
                                         COLOUR_BLUE, lowerBound, COLOUR_RESET);
                 flagInvalidInput = true;
             } catch (Exception e) {
@@ -531,6 +532,6 @@ public interface UI {
     public static void printWrongBetIdOrCpfMessage() {
         System.out.printf("Uma ou mais das informações %snão confere%s com os vencedores, retornando ao menu...",
                                 COLOUR_RED, COLOUR_RESET);
-        System.out.printf("Ou a sua aposta não tem pontos o suficiente para resgatar uma recompensa");
+        System.out.printf("%nOu a sua aposta não tem pontos o suficiente para resgatar uma recompensa");
     }
 }

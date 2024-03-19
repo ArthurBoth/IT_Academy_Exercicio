@@ -44,7 +44,7 @@ public interface Constants {
         public static final String REGEX_CLEANSE_NON_NUMBERS = "[^0-9]";
     
         // for the 'suspense' module
-        public static final boolean HAS_SUSPENSE = false;
+        public static final boolean HAS_SUSPENSE = true;
         public static final int SECONDS_TO_BUILD_SUSPENSE = 5;
     
         public static final Random randomizer = new Random();
