@@ -202,6 +202,7 @@ public class AppSystem {
         Set<Bet> currentWinners;
         int[] winnerNumbers;
         PairedInt[] everyBetNumber; //[0] stores the numbers bet and [1] stores their respective frequencies
+        int pointsAWinnerHas;
 
 
         currentWinners = currentRaffle.drawWinners();
@@ -210,15 +211,16 @@ public class AppSystem {
         everyBetNumber = sortByFrequency(currentRaffle.getAllBetNumbers());
         Arrays.sort(winnerNumbers);  // sorts in  ascending order
         Arrays.sort(everyBetNumber); // sorts in descending order
+        pointsAWinnerHas = (POINTS_FOR_WINNER_BETS + PrizePool.getLastDistributedPoints());
         currentRaffle = null;
 
         UI.printDrawingNumbersAnnouncementMessage(winnerNumbers);
         if (!(currentWinners.isEmpty())) {
-            UI.printSomeoneWonMessage(currentWinners);
+            UI.printSomeoneWonMessage(currentWinners, pointsAWinnerHas);
             UI.printEveryBetNumber(everyBetNumber);
             return;
         }
-        UI.printNobodyWonMessage();
+        UI.printNobodyWonMessage(pointsAWinnerHas);
         UI.printEveryBetNumber(everyBetNumber);
     }
 
@@ -270,13 +272,21 @@ public class AppSystem {
         cpf = Bet.formatCpf(UI.userInput(INPUT_TYPE.CPF));
 
         for (Bet b : winnerBets) {
-            if ((b.getRaffleId() == raffleId) && (b.getId() == betId) && (cpf.equals(b.getBetterCpf()))) {
+            if (    (b.getRaffleId() == raffleId) && 
+                    (b.getId() == betId) && 
+                    (cpf.equals(b.getBetterCpf())) &&
+                    (b.getPoints() >= REWARD_POINT_PRIZE)) {
+                b.removePoints(REWARD_POINT_PRIZE);
                 URL_LINKS link = URL_LINKS.getRandomLink();
                 UI.printCongratulatoryMessage();
                 UI.printReward(link.id, link.message, link.url);
                 Rewards.giveReward(link);
-                winnerBets.remove(b); // so winner only retrieve prize once
-                UI.printRemovedFromRewardsSet();
+                if (b.getPoints() < REWARD_POINT_PRIZE) {
+                    winnerBets.remove(b);
+                    UI.printRemovedFromRewardsSet();
+                    return;
+                }
+                UI.printStillHasAPrize();
                 return;
             }
         }

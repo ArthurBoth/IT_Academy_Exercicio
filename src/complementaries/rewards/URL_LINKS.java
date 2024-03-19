@@ -6,13 +6,13 @@ import static complementaries.Constants.Variables.randomizer;
 public enum URL_LINKS {
     THE_DUCK_SONG   (1, "A música do pato", "https://www.youtube.com/watch?v=MtN1YnoL46Q"),
     CRAZY_HAMSTER   (2, "Um hamster muito louco", "https://www.youtube.com/watch?v=H0Yirlo6WSU"),
-    BORING_VIDEO    (3, "Um vídeo chato", "https://www.youtube.com/watch?v=OtM73QPs3Hw"),
+    FAVOURITE_SONG  (3, "A minha música favorita", "https://www.youtube.com/watch?v=sWz7feSZXzg"),
     FURRET_WALKS    (4, "Um furret andando", "https://www.youtube.com/watch?v=xzD0M1MXGqY"),
     DUNKEY_GUIDE    (5,"O Guia Dunkey para Serviços de Streaming",
                         "https://www.youtube.com/watch?v=Nh1IKMEbvJM"),
     GITCHEE_GOO     (6, "Mande isso pro seu crush", "https://www.youtube.com/watch?v=66dEwN5I0Bs "),
-    KILL_GEOLOGIST  (7,"Uma dica para de lidar com geólogos que estão te incomodando",
-                        "https://www.youtube.com/watch?v=NuyZ-ExYkpQ");
+    SOFTWARE_TESTER (7,"Um vídeo sobre verificação e validação de software",
+                        "https://www.youtube.com/watch?v=GzhKG23pl-0");
                         
     public final String message;
     public final String url;

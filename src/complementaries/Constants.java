@@ -13,9 +13,9 @@ public interface Constants {
 
         public static final int LOWER_BOUND_OF_VALID_NUMBERS = 1;
         public static final int UPPER_BOUND_OF_VALID_NUMBERS = 50;
-        public static final int NUMBERS_PER_BET = 5;
+        public static final int NUMBERS_PER_BET = 3;
         public static final int AMOUNT_OF_INITIAL_DRAW_NUMBERS = 5;
-        public static final int AMOUNT_OF_EXTRA_DRAWING_ROUNDS = 25;
+        public static final int NUMBER_OF_MAXIMUM_ROUNDS = 25;
         public static final int START_OF_OPTIONS_IN_MENU = 1;
         public static final int NUMBER_OF_OPTIONS_IN_MENU = 5;
         public static final int SPECIAL_OCASION_NUMBER = 0;
@@ -23,6 +23,9 @@ public interface Constants {
         public static final int NUMBER_OF_NAMES_PER_LINE = 5;
         public static final int NUMBER_OF_REWARDS = URL_LINKS.values().length;
         public static final int SECONDS_TO_WAIT_FOR_REWARD = 2;
+        public static final int POINTS_PER_NEW_BET = 10;
+        public static final int POINTS_FOR_WINNER_BETS = 100;
+        public static final int REWARD_POINT_PRIZE = 100;
         
         // visualization constants
         public static final String COLOUR_RESET = "\u001B[0m";
@@ -41,7 +44,7 @@ public interface Constants {
         public static final String REGEX_CLEANSE_NON_NUMBERS = "[^0-9]";
     
         // for the 'suspense' module
-        public static final boolean HAS_SUSPENSE = true;
+        public static final boolean HAS_SUSPENSE = false;
         public static final int SECONDS_TO_BUILD_SUSPENSE = 5;
     
         public static final Random randomizer = new Random();
